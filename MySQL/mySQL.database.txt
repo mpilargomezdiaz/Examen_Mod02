@@ -1,0 +1,35 @@
+#DROP DATABASE IF EXISTS supermarket;
+
+CREATE DATABASE supermarket;
+
+USE supermarket;
+
+CREATE TABLE clients(
+id_client INT AUTO_INCREMENT,
+client_name VARCHAR(100) NOT NULL,
+client_lastnames VARCHAR(200) NOT NULL,
+client_dni VARCHAR(9) UNIQUE NOT NULL,
+client_card VARCHAR(20) NOT NULL,
+PRIMARY KEY(id_client)
+);
+
+CREATE TABLE products(
+id_product INT AUTO_INCREMENT,
+product_name VARCHAR(100) NOT NULL,
+product_code VARCHAR(20) NOT NULL,
+product_price VARCHAR(7) NOT NULL,
+PRIMARY KEY(id_product)
+);
+
+CREATE TABLE clients_products(
+id_client_product INT AUTO_INCREMENT,
+fk_id_client INT NOT NULL,
+fk_id_product INT NOT NULL,
+FOREIGN KEY(fk_id_client) REFERENCES clients(id_client),
+FOREIGN KEY(fk_id_product) REFERENCES products(id_product),
+PRIMARY KEY(id_client_product)
+);
+
+SELECT * FROM clients;
+SELECT * FROM products;
+SELECT * FROM clients_products;
